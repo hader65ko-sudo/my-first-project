@@ -1,0 +1,1 @@
+export function equilibrium(p:number,t:number):number;export function acidState(c:number,s:boolean):{fraction:number;pH:number};export function gibbs(t:number):number;export function nextReview(c:boolean,s:number,n?:number):number;

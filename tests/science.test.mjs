@@ -1,0 +1,4 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {equilibrium,acidState,gibbs,nextReview} from '../src/science.js';
+test('N2O4 dissociation satisfies Kp and responds to pressure and heat',()=>{const x=equilibrium(1,298);assert.ok(Math.abs(4*x*x/(1-x*x)-1)<1e-10);assert.ok(equilibrium(4,298)<x);assert.ok(equilibrium(1,340)>x)});
+test('weak acid obeys Ka mass balance and dilution increases dissociation',()=>{const a=acidState(.1,false),h=.1*a.fraction;assert.ok(Math.abs(h*h/(.1-h)-1.8e-5)<1e-12);assert.equal(acidState(.1,true).pH,1);assert.ok(acidState(.001,false).fraction>a.fraction)});
+test('Gibbs crosses zero and wrong reviews stay due',()=>{assert.ok(gibbs(298)<0);assert.ok(gibbs(400)>0);assert.equal(nextReview(false,2,100),100);assert.equal(nextReview(true,0,100),86400100)});
